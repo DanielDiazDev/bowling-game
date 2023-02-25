@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -19,6 +21,21 @@ using UnityEngine;
     public void AddRoll(int roll)
     {
         Rolls.Add(roll);
+    }
+
+    public int GetPinsHitDown()
+    {
+        return Rolls.Sum();
+    }
+
+    public bool AreThereAnyPinsToHitDown()
+    {
+        return NumberOfPinsToHitDown > GetPinsHitDown();
+    }
+
+    public bool HaveRollsToDo()
+    {
+        return MaxNumberOfRolls > Rolls.Count;
     }
 }
 
