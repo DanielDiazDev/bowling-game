@@ -1,4 +1,4 @@
-﻿public class PlayerDoRoll
+﻿public class PlayerDoesRoll
 {
     public void ResolveRoll(int roll, Match match)
     {
