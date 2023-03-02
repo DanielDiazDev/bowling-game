@@ -13,9 +13,9 @@ public class Presenter
     int numberOfPinsToHitDownPerFrame = 10;
     int numberOfShotsPerFrame = 2;
 
-    public void Initialize( IBowlingView bowlingView)
+    public void Initialize(IBowlingView bowlingView)
     {
-       this.bowlingView = bowlingView;
+        this.bowlingView = bowlingView;
         this.bowlingView.OnStartMatch += StartMatch;
         this.bowlingView.OnPlayerDoesRoll += PlayerDoesRoll;
 
@@ -29,13 +29,20 @@ public class Presenter
 
     void StartMatch(object sender, EventArgs e)
     {
-        startMatch.Create(numberOfFrames, numberOfPinsToHitDownPerFrame, numberOfShotsPerFrame);
+       match =  startMatch.Create(numberOfFrames, numberOfPinsToHitDownPerFrame, numberOfShotsPerFrame);
     }
 
-    void PlayerDoesRoll (object sender, int roll)
+    public void PlayerDoesRoll (object sender, int roll)
     {
+        bowlingView.SetFrameRollScore(match.CurrentFrameIndex, match.CurrentFrame().Rolls.Count , roll);
         playerDoesRoll.ResolveRoll(roll, match);
-        if (endOfMatch.CheckEndOfMatch(match)) EndOfMatch();    
+        
+        if (endOfMatch.CheckEndOfMatch(match)) {
+            EndOfMatch();
+            return;
+        } 
+
+        if (match.CurrentFrame().Rolls.Count == 0) bowlingView.StartNewFrame();
     }
 
     void EndOfMatch()

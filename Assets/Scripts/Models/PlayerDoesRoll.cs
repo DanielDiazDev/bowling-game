@@ -8,7 +8,8 @@
 
     }
 
-    bool IsFrameComplete(Frame frame)
+
+    public bool IsFrameComplete(Frame frame)
     {
         return !frame.AreThereAnyPinsToHitDown() || !frame.HaveRollsToDo();
     }

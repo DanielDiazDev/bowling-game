@@ -6,8 +6,8 @@ using UnityEngine;
 public class MatchScorer
 {
     
-    public List<int> Score(Match match)
-    {
+   public List<int> Score(Match match)
+   {
         List<int> results = new List<int>();
         int accScore = 0;
         foreach(Frame frame in match.Frames)
@@ -16,7 +16,7 @@ public class MatchScorer
             results.Add(accScore);
         }
         return results;
-    }
+   }
 
     int ScoreFrameFromMatch(Frame frame, Match match)
     {

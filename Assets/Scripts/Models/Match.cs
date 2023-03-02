@@ -8,11 +8,14 @@ using UnityEngine;
 public class Match 
 {
     public List<Frame> Frames { get; }
-    int currentFrameIndex = 0;
+
+    int currentFrameIndex;
+    public int CurrentFrameIndex { get { return currentFrameIndex; } }
 
     public Match(List<Frame> frames)
     {
         Frames = frames;
+        currentFrameIndex = 0;
     }
 
     public Frame CurrentFrame()
@@ -22,7 +25,7 @@ public class Match
 
     public void MoveToNextFrame()
     {
-        if(currentFrameIndex < Frames.Count -1 )currentFrameIndex++;
+        if(currentFrameIndex < Frames.Count -1 ) currentFrameIndex = currentFrameIndex + 1;
     }
 
     public bool IsLastFrame()
