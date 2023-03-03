@@ -123,6 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5870344098913276173}
+  - component: {fileID: 5703718784727321701}
   m_Layer: 0
   m_Name: PinController
   m_TagString: Untagged
@@ -155,6 +156,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5703718784727321701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5870344098913276170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb409487982742c42bb70bb1fc4026b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pins:
+  - {fileID: 8516399753433773004}
+  - {fileID: 5870344100700802210}
+  - {fileID: 5870344100375287676}
+  - {fileID: 5870344098870218645}
+  - {fileID: 5870344100696112202}
+  - {fileID: 5870344099486472236}
+  - {fileID: 5870344099877159390}
+  - {fileID: 5870344100871638125}
+  - {fileID: 5870344099058007277}
+  - {fileID: 5870344099612586763}
 --- !u!1 &5870344099058007274
 GameObject:
   m_ObjectHideFlags: 0

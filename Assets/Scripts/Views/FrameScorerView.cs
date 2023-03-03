@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +11,11 @@ public class FrameScorerView : MonoBehaviour
 
     public void SetScoreWithIndex(int index, int score)
     {
-        Debug.Log(score);
         scorersText[index].text = score.ToString();
     }
 
+    internal void SetScoreLast(int score)
+    {
+        scorersText.Last().text = score.ToString();
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class View : MonoBehaviour, IBowlingView
@@ -25,10 +26,9 @@ public class View : MonoBehaviour, IBowlingView
     {
         if (other.CompareTag("Player"))
         {
-
             SetRoll(pinController.GetNumberOfPinsHitDown());
             if(pinController != null)pinController.ResetCount();
-            ballScript.Invoke("SetStartPosition", 0.5f);
+            ballScript.SetStartPosition();
         }
     }
 
@@ -50,21 +50,30 @@ public class View : MonoBehaviour, IBowlingView
     public void StartNewFrame()
     {
         Destroy(pinController.gameObject);
-        Debug.Log("PAso por aca");
+        Invoke("InstatiatePinController", 0.1f);
+    }
+    void InstatiatePinController()
+    {
         pinController = Instantiate(pinControllerPrefab, pinSpawnTransform.position, pinSpawnTransform.rotation).GetComponent<Pin>();
+        Debug.Log("instancio");
+        Debug.Log(pinController);
     }
     public void SetRoll(int roll)
     {
         OnPlayerDoesRoll?.Invoke(this, roll);
     }
 
-    public void SetFramesFinalScore(List<int> finalScores)
-    {
-        throw new NotImplementedException();
-    }
 
     public void SetFrameRollScore(int currentFrameIndex, int currentFrameLastRollIndex, int roll)
     {
         frameScorerViews[currentFrameIndex].SetScoreWithIndex(currentFrameLastRollIndex, roll);
+    }
+
+    public void SetFramesFinalScore(List<int> finalScores)
+    {
+        for(int i = 0; i < finalScores.Count; i++)
+        {
+            frameScorerViews[i].SetScoreLast(finalScores[i]);
+        }
     }
 }

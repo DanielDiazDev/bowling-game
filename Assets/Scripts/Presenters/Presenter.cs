@@ -40,9 +40,13 @@ public class Presenter
         if (endOfMatch.CheckEndOfMatch(match)) {
             EndOfMatch();
             return;
-        } 
+        }
 
-        if (match.CurrentFrame().Rolls.Count == 0) bowlingView.StartNewFrame();
+        if (match.CurrentFrame().Rolls.Count == 0) {
+          
+            bowlingView.StartNewFrame();
+        }
+        
     }
 
     void EndOfMatch()

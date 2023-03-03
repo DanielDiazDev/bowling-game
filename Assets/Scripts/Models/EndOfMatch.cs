@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public class EndOfMatch
 {
@@ -16,7 +17,11 @@ public class EndOfMatch
 
     bool IsFrameComplete(Frame frame)
     {
-        return !frame.AreThereAnyPinsToHitDown() || !frame.HaveRollsToDo();
+        if (frame.Rolls.Sum() >= frame.NumberOfPinsToHitDown) return frame.Rolls.Count == frame.MaxNumberOfRolls + 1;
+
+
+
+        return !frame.HaveRollsToDo();
     }
 
 

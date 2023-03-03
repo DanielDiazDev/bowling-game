@@ -4,6 +4,7 @@
     {
         match.CurrentFrame().AddRoll(roll);
 
+        if (match.IsLastFrame()) return;
         if (IsFrameComplete(match.CurrentFrame())) match.MoveToNextFrame();
 
     }
