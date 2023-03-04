@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+//using System.Text.RegularExpressions;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using Entities;
+
 //using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class TestMatch

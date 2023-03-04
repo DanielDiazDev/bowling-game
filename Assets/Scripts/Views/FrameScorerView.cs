@@ -5,17 +5,26 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class FrameScorerView : MonoBehaviour
+namespace Views
 {
-    [SerializeField] TextMeshProUGUI[] scorersText;
-
-    public void SetScoreWithIndex(int index, int score)
+    public class FrameScorerView : MonoBehaviour
     {
-        scorersText[index].text = score.ToString();
-    }
+        [SerializeField] TextMeshProUGUI[] scorersText;
 
-    internal void SetScoreLast(int score)
-    {
-        scorersText.Last().text = score.ToString();
+        public void SetScoreWithIndex(int index, int score)
+        {
+            if(score == 10)
+            {
+                scorersText[index].text = "X";
+                return;
+            }
+            scorersText[index].text = score.ToString();
+        }
+
+        internal void SetScoreLast(int score)
+        {
+            scorersText.Last().text = score.ToString();
+        }
     }
 }
+

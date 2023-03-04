@@ -2,23 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotBall : MonoBehaviour
+namespace Views
 {
-    [SerializeField] private GameObject ball;
-    [SerializeField, Range(100f,1000f)] float force = 1000f;
-    private Rigidbody ballRigidbody;
-
-    private void Start()
+    public class ShotBall : MonoBehaviour
     {
-        ballRigidbody = ball.GetComponent<Rigidbody>();
-    }
+        [SerializeField] private GameObject ball;
+        [SerializeField, Range(100f, 1000f)] float force = 1000f;
+        private Rigidbody ballRigidbody;
+        Vector3 direction = new Vector3(0, 0, -2);
 
-    public void Shot()
-    {
-        Vector3 direction = new Vector3(0, 0, -2); 
-        
+        private void Start()
+        {
+            ballRigidbody = ball.GetComponent<Rigidbody>();
+        }
 
-        ballRigidbody.AddForce(direction * force);
+        private void FixedUpdate()
+        {
+            float magnitude = ballRigidbody.velocity.magnitude;
+            if (magnitude < 100 && magnitude > 1) ballRigidbody.AddForce(direction * 100f * Time.deltaTime);
+        }
+
+        public void Shot()
+        {
+            
+
+
+            ballRigidbody.AddForce(direction * force);
+        }
+
     }
 
 }

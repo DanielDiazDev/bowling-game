@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+namespace Views
 {
-    [SerializeField] Rigidbody rigidbody;
-    [SerializeField] Transform spawnPoint;
-    
-
-    public void SetStartPosition()
+    public class Ball : MonoBehaviour
     {
-        rigidbody.velocity= Vector3.zero;
-        transform.position = spawnPoint.position;
-        transform.rotation = spawnPoint.rotation;
+        [SerializeField] Rigidbody rigidbody;
+        [SerializeField] Transform spawnPoint;
+
+
+        public void SetStartPosition()
+        {
+            rigidbody.velocity = Vector3.zero;
+            transform.position = spawnPoint.position;
+            transform.rotation = spawnPoint.rotation;
+        }
     }
+
 }
+

@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Presenter;
+using Views;
+using UnityEngine.SceneManagement;
 
-public class View : MonoBehaviour, IBowlingView
+public class GameView : MonoBehaviour, IBowlingView
 {
     [SerializeField] FrameScorerView[] frameScorerViews;
     [SerializeField] Transform pinSpawnTransform;
@@ -14,11 +17,11 @@ public class View : MonoBehaviour, IBowlingView
     
     public event EventHandler OnStartMatch;
     public event EventHandler<int> OnPlayerDoesRoll;
-    private Presenter presenter;
+    private GamePresenter presenter;
     // Start is called before the first frame update
     void Start()
     {
-        presenter = new Presenter();
+        presenter = new GamePresenter();
         presenter.Initialize(this);
 
     }
@@ -26,22 +29,10 @@ public class View : MonoBehaviour, IBowlingView
     {
         if (other.CompareTag("Player"))
         {
-            SetRoll(pinController.GetNumberOfPinsHitDown());
-            if(pinController != null)pinController.ResetCount();
-            ballScript.SetStartPosition();
+            Invoke("FinishRoll", 2f);
         }
     }
-
-
-    // Update is called once per frame
-    //private void Update()
-    //{
-
-    //    pinController.CheckPinsDown();
-    //}
-
-
-
+    
     public void StarMatch()
     {
         OnStartMatch?.Invoke(this, EventArgs.Empty);
@@ -55,8 +46,7 @@ public class View : MonoBehaviour, IBowlingView
     void InstatiatePinController()
     {
         pinController = Instantiate(pinControllerPrefab, pinSpawnTransform.position, pinSpawnTransform.rotation).GetComponent<Pin>();
-        Debug.Log("instancio");
-        Debug.Log(pinController);
+    
     }
     public void SetRoll(int roll)
     {
@@ -75,5 +65,17 @@ public class View : MonoBehaviour, IBowlingView
         {
             frameScorerViews[i].SetScoreLast(finalScores[i]);
         }
+    }
+    void FinishRoll()
+    {
+        SetRoll(pinController.GetNumberOfPinsHitDown());
+        if (pinController != null) pinController.ResetCount();
+        ballScript.SetStartPosition();
+    }
+
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }

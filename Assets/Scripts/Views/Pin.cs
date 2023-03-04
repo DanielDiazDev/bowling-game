@@ -2,39 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pin : MonoBehaviour
+namespace Views
 {
-    [SerializeField] private List<Transform> pins;
-    // Start is called before the first frame update
-    int numberOfPinsHitDown=0;
-
-    public void ResetCount()
+    public class Pin : MonoBehaviour
     {
-        numberOfPinsHitDown= 0;
-    }
+        [SerializeField] private List<Transform> pins;
+        // Start is called before the first frame update
+        int numberOfPinsHitDown = 0;
 
-    public void CheckPinsDown()
-    {
-        foreach(Transform pin in pins)
+        public void ResetCount()
         {
-            CheckPinDown(pin);
+            numberOfPinsHitDown = 0;
         }
-    }
-    public void CheckPinDown(Transform pin)
-    {
-       
-        float angle = Vector3.Angle(pin.up, Vector3.up);
 
-        if (angle > 10f && pin.gameObject.activeSelf)
+        public void CheckPinsDown()
         {
-            pin.gameObject.SetActive(false);
-            numberOfPinsHitDown++;
+            foreach (Transform pin in pins)
+            {
+                CheckPinDown(pin);
+            }
         }
-    }
+        public void CheckPinDown(Transform pin)
+        {
 
-    public int GetNumberOfPinsHitDown()
-    {
-        CheckPinsDown();
-        return numberOfPinsHitDown;
+            float angle = Vector3.Angle(pin.up, Vector3.up);
+
+            if (angle > 5f && pin.gameObject.activeSelf)
+            {
+                pin.gameObject.SetActive(false);
+                numberOfPinsHitDown++;
+            }
+        }
+
+        public int GetNumberOfPinsHitDown()
+        {
+            CheckPinsDown();
+            return numberOfPinsHitDown;
+        }
     }
 }
+

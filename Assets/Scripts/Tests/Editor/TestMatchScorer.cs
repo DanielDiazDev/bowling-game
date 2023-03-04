@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using Entities;
+using UseCases;
 using UnityEngine.TestTools;
 
 public class TestMatchScorer

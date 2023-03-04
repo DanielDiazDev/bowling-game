@@ -4,7 +4,8 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-
+using Entities;
+using UseCases;
 public class TestPlayerDoesRoll
 {
     // A Test behaves as an ordinary method
